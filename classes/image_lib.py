@@ -95,4 +95,6 @@ class ImageAgent:
         >>> image : ndarray = image_agent.LoadImage("path/to/image.jpg", ColorMode.rgb)
         >>> cropped_image : ndarray = image_agent.CropImage(image, Rect(0, 0, 100, 100))
         """
-        return image[rect.y_:rect.y_ + rect.height_, rect.x_:rect.x_ + rect.width_]
+        return image[rect.point_.y_:rect.point_.y_+rect.size_.height_, rect.point_.x_:rect.point_.x_+rect.size_.width_]
+        
+
