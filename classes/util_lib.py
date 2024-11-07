@@ -544,6 +544,10 @@ class Point(Generic[T]):
         assert isinstance(other.y_, type(self.y_)), f"y_ must be of type {type(self.y_)}"
 
 class Rect(Generic[T]):
+    """
+    Rect class for 2D rectangle
+    """
+
     def __init__(self, width: T, height: T, x: T, y: T) -> None:
         """
         Constructor for Rect class
@@ -551,8 +555,8 @@ class Rect(Generic[T]):
         :example:
         rect : Rect = Rect(10, 10, 5, 5)
         """
-        self.size : Size[T] = Size[T](width, height)
-        self.point : Point[T] = Point[T](x, y)
+        self.size_ : Size[T] = Size[T](width, height)
+        self.point_ : Point[T] = Point[T](x, y)
     
     def __str__(self) -> str:
         """
@@ -563,7 +567,7 @@ class Rect(Generic[T]):
         print(rect) # Rect(size=Size(width=10, height=10), point=Point(x=5, y=5))
         """
         self.ClassValidator()
-        return f"Rect(size={self.size}, point={self.point})"
+        return f"Rect(size={self.size_}, point={self.point_})"
 
     def Add(self, value: T) -> 'Rect':
         """
@@ -574,8 +578,8 @@ class Rect(Generic[T]):
         print(rect.Add(5)) # Rect(size=Size(width=15, height=15), point=Point(x=10, y=10))
         """
         self.ClassValidator()
-        new_size = self.size.Add(value)
-        new_point = self.point.Add(value)
+        new_size = self.size_.Add(value)
+        new_point = self.point_.Add(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def Sub(self, value: T) -> 'Rect':
@@ -587,8 +591,8 @@ class Rect(Generic[T]):
         print(rect.Sub(5)) # Rect(size=Size(width=5, height=5), point=Point(x=0, y=0))
         """
         self.ClassValidator()
-        new_size = self.size.Sub(value)
-        new_point = self.point.Sub(value)
+        new_size = self.size_.Sub(value)
+        new_point = self.point_.Sub(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def Mul(self, value: T) -> 'Rect':
@@ -600,8 +604,8 @@ class Rect(Generic[T]):
         print(rect.Mul(5)) # Rect(size=Size(width=50, height=50), point=Point(x=25, y=25))
         """
         self.ClassValidator()
-        new_size = self.size.Mul(value)
-        new_point = self.point.Mul(value)
+        new_size = self.size_.Mul(value)
+        new_point = self.point_.Mul(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def TrueDiv(self, value: T) -> 'Rect':
@@ -613,8 +617,8 @@ class Rect(Generic[T]):
         print(rect.TrueDiv(5)) # Rect(size=Size(width=2.0, height=2.0), point=Point(x=1.0, y=1.0))
         """
         self.ClassValidator()
-        new_size = self.size.TrueDiv(value)
-        new_point = self.point.TrueDiv(value)
+        new_size = self.size_.TrueDiv(value)
+        new_point = self.point_.TrueDiv(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def FloorDiv(self, value: T) -> 'Rect':
@@ -626,8 +630,8 @@ class Rect(Generic[T]):
         print(rect.FloorDiv(5)) # Rect(size=Size(width=2, height=2), point=Point(x=1, y=1))
         """
         self.ClassValidator()
-        new_size = self.size.FloorDiv(value)
-        new_point = self.point.FloorDiv(value)
+        new_size = self.size_.FloorDiv(value)
+        new_point = self.point_.FloorDiv(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def Mod(self, value: T) -> 'Rect':
@@ -639,8 +643,8 @@ class Rect(Generic[T]):
         print(rect.Mod(5))
         """
         self.ClassValidator()
-        new_size = self.size.Mod(value)
-        new_point = self.point.Mod(value)
+        new_size = self.size_.Mod(value)
+        new_point = self.point_.Mod(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def Pow(self, value: T) -> 'Rect':
@@ -652,8 +656,8 @@ class Rect(Generic[T]):
         print(rect.Pow(2)) # Rect(size=Size(width=100, height=100), point=Point(x=25, y=25))
         """
         self.ClassValidator()
-        new_size = self.size.Pow(value)
-        new_point = self.point.Pow(value)
+        new_size = self.size_.Pow(value)
+        new_point = self.point_.Pow(value)
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __add__(self, other: 'Rect') -> 'Rect':
@@ -666,8 +670,8 @@ class Rect(Generic[T]):
         print(rect1 + rect2) # Rect(size=Size(width=30, height=30), point=Point(x=15, y=15))
         """
         self.OtherValidator(other)
-        new_size = self.size + other.size
-        new_point = self.point + other.point
+        new_size = self.size_ + other.size_
+        new_point = self.point_ + other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __sub__(self, other: 'Rect') -> 'Rect':
@@ -680,8 +684,8 @@ class Rect(Generic[T]):
         print(rect1 - rect2) # Rect(size=Size(width=-10, height=-10), point=Point(x=-5, y=-5))
         """
         self.OtherValidator(other)
-        new_size = self.size - other.size
-        new_point = self.point - other.point
+        new_size = self.size_ - other.size_
+        new_point = self.point_ - other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __mul__(self, other: 'Rect') -> 'Rect':
@@ -694,8 +698,8 @@ class Rect(Generic[T]):
         print(rect1 * rect2) # Rect(size=Size(width=200, height=200), point=Point(x=50, y=50))
         """
         self.OtherValidator(other)
-        new_size = self.size * other.size
-        new_point = self.point * other.point
+        new_size = self.size_ * other.size_
+        new_point = self.point_ * other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __truediv__(self, other: 'Rect') -> 'Rect':
@@ -708,8 +712,8 @@ class Rect(Generic[T]):
         print(rect1 / rect2) # Rect(size=Size(width=0.5, height=0.5), point=Point(x=0.5, y=0.5))
         """
         self.OtherValidator(other)
-        new_size = self.size / other.size
-        new_point = self.point / other.point
+        new_size = self.size_ / other.size_
+        new_point = self.point_ / other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __floordiv__(self, other: 'Rect') -> 'Rect':
@@ -722,8 +726,8 @@ class Rect(Generic[T]):
         print(rect1 // rect2)
         """
         self.OtherValidator(other)
-        new_size = self.size // other.size
-        new_point = self.point // other.point
+        new_size = self.size_ // other.size_
+        new_point = self.point_ // other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __mod__(self, other: 'Rect') -> 'Rect':
@@ -736,8 +740,8 @@ class Rect(Generic[T]):
         print(rect1 % rect2)
         """
         self.OtherValidator(other)
-        new_size = self.size % other.size
-        new_point = self.point % other.point
+        new_size = self.size_ % other.size_
+        new_point = self.point_ % other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __pow__(self, other: 'Rect') -> 'Rect':
@@ -750,8 +754,8 @@ class Rect(Generic[T]):
         print(rect1 ** rect2) # Rect(size=Size(width=100, height=100), point=Point(x=25, y=25))
         """
         self.OtherValidator(other)
-        new_size = self.size ** other.size
-        new_point = self.point ** other.point
+        new_size = self.size_ ** other.size_
+        new_point = self.point_ ** other.point_
         return Rect(new_size.width_, new_size.height_, new_point.x_, new_point.y_)
 
     def __eq__(self, other: object) -> bool:
@@ -765,7 +769,7 @@ class Rect(Generic[T]):
         """
         assert isinstance(other, Rect), "other must be of type Rect"
         self.OtherValidator(other)
-        return self.size == other.size and self.point == other.point
+        return self.size_ == other.size_ and self.point_ == other.point_
 
     def __ne__(self, other: object) -> bool:
         """
@@ -778,7 +782,7 @@ class Rect(Generic[T]):
         """
         assert isinstance(other, Rect), "other must be of type Rect"
         self.OtherValidator(other)
-        return self.size != other.size or self.point != other.point
+        return self.size_ != other.size_ or self.point_ != other.point_
 
     def __lt__(self, other: 'Rect') -> bool:
         """
@@ -790,7 +794,7 @@ class Rect(Generic[T]):
         print(rect1 < rect2) # True
         """
         self.OtherValidator(other)
-        return self.size < other.size and self.point < other.point
+        return self.size_ < other.size_ and self.point_ < other.point_
 
     def __le__(self, other: 'Rect') -> bool:
         """
@@ -802,7 +806,7 @@ class Rect(Generic[T]):
         print(rect1 <= rect2) # True
         """
         self.OtherValidator(other)
-        return self.size <= other.size and self.point <= other.point
+        return self.size_ <= other.size_ and self.point_ <= other.point_
 
     def __gt__(self, other: 'Rect') -> bool:
         """
@@ -814,7 +818,7 @@ class Rect(Generic[T]):
         print(rect1 > rect2) # False
         """
         self.OtherValidator(other)
-        return self.size > other.size and self.point > other.point
+        return self.size_ > other.size_ and self.point_ > other.point_
 
     def __ge__(self, other: 'Rect') -> bool:
         """
@@ -826,13 +830,13 @@ class Rect(Generic[T]):
         print(rect1 >= rect2) # False
         """
         assert isinstance(other, Rect), "other must be of type Rect"
-        return self.size >= other.size and self.point >= other.point
+        return self.size_ >= other.size_ and self.point_ >= other.point_
 
     def ClassValidator(self) -> None:
-        self.size.ClassValidator()
-        self.point.ClassValidator()
+        self.size_.ClassValidator()
+        self.point_.ClassValidator()
 
     def OtherValidator(self, other: 'Rect') -> None:
         assert isinstance(other, Rect), "other must be of type Rect"
-        self.size.OtherValidator(other.size)
-        self.point.OtherValidator(other.point)
+        self.size_.OtherValidator(other.size_)
+        self.point_.OtherValidator(other.point_)
