@@ -627,17 +627,17 @@ class Rect(Generic[T]):
         Constructor for Rect class
         
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         """
-        self.size_ : Size[T] = Size[T](width, height)
-        self.point_ : Point[T] = Point[T](x, y)
+        self.size_: Size[T] = Size[T](width, height)
+        self.point_: Point[T] = Point[T](x, y)
     
     def __str__(self) -> str:
         """
         Returns a string representation of the Rect object
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect) # Rect(size=Size(width=10, height=10), point=Point(x=5, y=5))
         """
         self.ClassValidator()
@@ -648,7 +648,7 @@ class Rect(Generic[T]):
         Adds a value to the Rect object
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.Add(5)) # Rect(size=Size(width=15, height=15), point=Point(x=10, y=10))
         """
         self.ClassValidator()
@@ -661,7 +661,7 @@ class Rect(Generic[T]):
         Subtracts a value from the Rect object
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.Sub(5)) # Rect(size=Size(width=5, height=5), point=Point(x=0, y=0))
         """
         self.ClassValidator()
@@ -674,7 +674,7 @@ class Rect(Generic[T]):
         Multiplies a value with the Rect object
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.Mul(5)) # Rect(size=Size(width=50, height=50), point=Point(x=25, y=25))
         """
         self.ClassValidator()
@@ -687,7 +687,7 @@ class Rect(Generic[T]):
         Divides the Rect object by a value
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.TrueDiv(5)) # Rect(size=Size(width=2.0, height=2.0), point=Point(x=1.0, y=1.0))
         """
         self.ClassValidator()
@@ -700,7 +700,7 @@ class Rect(Generic[T]):
         Divides the Rect object by a value and returns the floor value
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.FloorDiv(5)) # Rect(size=Size(width=2, height=2), point=Point(x=1, y=1))
         """
         self.ClassValidator()
@@ -713,7 +713,7 @@ class Rect(Generic[T]):
         Returns the modulus of the Rect object and a value
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.Mod(5))
         """
         self.ClassValidator()
@@ -726,7 +726,7 @@ class Rect(Generic[T]):
         Returns the Rect object raised to the power of a value
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect.Pow(2)) # Rect(size=Size(width=100, height=100), point=Point(x=25, y=25))
         """
         self.ClassValidator()
@@ -739,8 +739,8 @@ class Rect(Generic[T]):
         Adds two Rect objects together
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 + rect2) # Rect(size=Size(width=30, height=30), point=Point(x=15, y=15))
         """
         self.OtherValidator(other)
@@ -753,8 +753,8 @@ class Rect(Generic[T]):
         Subtracts two Rect objects together
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 - rect2) # Rect(size=Size(width=-10, height=-10), point=Point(x=-5, y=-5))
         """
         self.OtherValidator(other)
@@ -767,8 +767,8 @@ class Rect(Generic[T]):
         Multiplies two Rect objects together
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 * rect2) # Rect(size=Size(width=200, height=200), point=Point(x=50, y=50))
         """
         self.OtherValidator(other)
@@ -781,8 +781,8 @@ class Rect(Generic[T]):
         Divides two Rect objects together
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 / rect2) # Rect(size=Size(width=0.5, height=0.5), point=Point(x=0.5, y=0.5))
         """
         self.OtherValidator(other)
@@ -795,8 +795,8 @@ class Rect(Generic[T]):
         Divides two Rect objects together and returns the floor value
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 // rect2)
         """
         self.OtherValidator(other)
@@ -809,8 +809,8 @@ class Rect(Generic[T]):
         Returns the modulus of two Rect objects
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 % rect2)
         """
         self.OtherValidator(other)
@@ -823,8 +823,8 @@ class Rect(Generic[T]):
         Returns the Rect object raised to the power of another Rect object
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(2, 2, 2, 2)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](2, 2, 2, 2)
         print(rect1 ** rect2) # Rect(size=Size(width=100, height=100), point=Point(x=25, y=25))
         """
         self.OtherValidator(other)
@@ -837,8 +837,8 @@ class Rect(Generic[T]):
         Checks if two Rect objects are equal
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(10, 10, 5, 5)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](10, 10, 5, 5)
         print(rect1 == rect2) # True
         """
         assert isinstance(other, Rect), "other must be of type Rect"
@@ -850,8 +850,8 @@ class Rect(Generic[T]):
         Checks if two Rect objects are not equal
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 != rect2) # True
         """
         assert isinstance(other, Rect), "other must be of type Rect"
@@ -863,8 +863,8 @@ class Rect(Generic[T]):
         Checks if one Rect object is less than another
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 < rect2) # True
         """
         self.OtherValidator(other)
@@ -875,8 +875,8 @@ class Rect(Generic[T]):
         Checks if one Rect object is less than or equal to another
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 <= rect2) # True
         """
         self.OtherValidator(other)
@@ -887,8 +887,8 @@ class Rect(Generic[T]):
         Checks if one Rect object is greater than another
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 > rect2) # False
         """
         self.OtherValidator(other)
@@ -899,8 +899,8 @@ class Rect(Generic[T]):
         Checks if one Rect object is greater than or equal to another
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         print(rect1 >= rect2) # False
         """
         assert isinstance(other, Rect), "other must be of type Rect"
@@ -911,7 +911,7 @@ class Rect(Generic[T]):
         Validates the class attributes
 
         :example:
-        rect : Rect = Rect(10, 10, 5, 5)
+        rect: Rect[int] = Rect[int](10, 10, 5, 5)
         rect.ClassValidator()
         """
         self.size_.ClassValidator()
@@ -922,8 +922,8 @@ class Rect(Generic[T]):
         Validates the other class attributes
 
         :example:
-        rect1 : Rect = Rect(10, 10, 5, 5)
-        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1: Rect[int] = Rect[int](10, 10, 5, 5)
+        rect2: Rect[int] = Rect[int](20, 20, 10, 10)
         rect1.OtherValidator(rect2)
         """
         assert isinstance(other, Rect), "other must be of type Rect"
