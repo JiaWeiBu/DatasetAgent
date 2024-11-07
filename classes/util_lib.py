@@ -342,7 +342,7 @@ class Point(Generic[T]):
         Constructor for Point class
         
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         """
         self.x_: T = x
         self.y_: T = y
@@ -352,7 +352,7 @@ class Point(Generic[T]):
         Returns a string representation of the Point object
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point) # Point(x=10, y=10)
         """
         self.ClassValidator()
@@ -363,7 +363,7 @@ class Point(Generic[T]):
         Adds a value to the Point object
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.Add(5)) # Point(x=15, y=15)
         """
         self.ClassValidator()
@@ -374,7 +374,7 @@ class Point(Generic[T]):
         Subtracts a value from the Point object
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.Sub(5)) # Point(x=5, y=5)
         """
         self.ClassValidator()
@@ -385,7 +385,7 @@ class Point(Generic[T]):
         Multiplies a value with the Point object
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.Mul(5)) # Point(x=50, y=50)
         """
         self.ClassValidator()
@@ -396,7 +396,7 @@ class Point(Generic[T]):
         Divides the Point object by a value
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.TrueDiv(5)) # Point(x=2.0, y=2.0)
         """
         self.ClassValidator()
@@ -407,7 +407,7 @@ class Point(Generic[T]):
         Divides the Point object by a value and returns the floor value
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.FloorDiv(5)) # Point(x=2, y=2)
         """
         self.ClassValidator()
@@ -418,8 +418,8 @@ class Point(Generic[T]):
         Returns the modulus of the Point object and a value
 
         :example:
-        point : Point = Point(10, 10)
-        print(point.Mod(5))
+        point: Point[int] = Point[int](10, 10)
+        print(point.Mod(5)) # Point(x=0, y=0)
         """
         self.ClassValidator()
         return Point(self.x_ % value, self.y_ % value)
@@ -429,7 +429,7 @@ class Point(Generic[T]):
         Returns the Point object raised to the power of a value
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         print(point.Pow(2)) # Point(x=100, y=100)
         """
         self.ClassValidator()
@@ -440,8 +440,8 @@ class Point(Generic[T]):
         Adds two Point objects together
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 + point2) # Point(x=30, y=30)
         """
         self.OtherValidator(other)
@@ -452,8 +452,8 @@ class Point(Generic[T]):
         Subtracts two Point objects together
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 - point2) # Point(x=-10, y=-10)
         """
         self.OtherValidator(other)
@@ -464,8 +464,8 @@ class Point(Generic[T]):
         Multiplies two Point objects together
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 * point2) # Point(x=200, y=200)
         """
         self.OtherValidator(other)
@@ -476,8 +476,8 @@ class Point(Generic[T]):
         Divides two Point objects together
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 / point2) # Point(x=0.5, y=0.5)
         """
         self.OtherValidator(other)
@@ -488,9 +488,9 @@ class Point(Generic[T]):
         Divides two Point objects together and returns the floor value
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
-        print(point1 // point2)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
+        print(point1 // point2) # Point(x=0, y=0)
         """
         self.OtherValidator(other)
         return Point(self.x_ // other.x_, self.y_ // other.y_)
@@ -500,9 +500,9 @@ class Point(Generic[T]):
         Returns the modulus of two Point objects
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
-        print(point1 % point2)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
+        print(point1 % point2) # Point(x=10, y=10)
         """
         self.OtherValidator(other)
         return Point(self.x_ % other.x_, self.y_ % other.y_)
@@ -512,8 +512,8 @@ class Point(Generic[T]):
         Returns the Point object raised to the power of another Point object
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(2, 2)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](2, 2)
         print(point1 ** point2) # Point(x=100, y=100)
         """
         self.OtherValidator(other)
@@ -524,8 +524,8 @@ class Point(Generic[T]):
         Checks if two Point objects are equal
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(10, 10)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](10, 10)
         print(point1 == point2) # True
         """
         assert isinstance(other, Point), "other must be of type Point"
@@ -537,8 +537,8 @@ class Point(Generic[T]):
         Checks if two Point objects are not equal
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 != point2) # True
         """
         assert isinstance(other, Point), "other must be of type Point"
@@ -550,8 +550,8 @@ class Point(Generic[T]):
         Checks if one Point object is less than another
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 < point2) # True
         """
         self.OtherValidator(other)
@@ -562,8 +562,8 @@ class Point(Generic[T]):
         Checks if one Point object is less than or equal to another
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 <= point2) # True
         """
         self.OtherValidator(other)
@@ -574,8 +574,8 @@ class Point(Generic[T]):
         Checks if one Point object is greater than another
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 > point2) # False
         """
         self.OtherValidator(other)
@@ -586,8 +586,8 @@ class Point(Generic[T]):
         Checks if one Point object is greater than or equal to another
 
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         print(point1 >= point2) # False
         """
         assert isinstance(other, Point), "other must be of type Point"
@@ -598,7 +598,7 @@ class Point(Generic[T]):
         Validates the class type
 
         :example:
-        point : Point = Point(10, 10)
+        point: Point[int] = Point[int](10, 10)
         point.ClassValidator()
         """
         assert isinstance(self.x_, type(self.x_)), f"x_ must be of type {type(self.x_)}"
@@ -609,8 +609,8 @@ class Point(Generic[T]):
         Validates the other type
         
         :example:
-        point1 : Point = Point(10, 10)
-        point2 : Point = Point(20, 20)
+        point1: Point[int] = Point[int](10, 10)
+        point2: Point[int] = Point[int](20, 20)
         point1.OtherValidator(point2)
         """
         assert isinstance(other, Point), "other must be of type Point"
