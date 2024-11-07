@@ -1,4 +1,47 @@
 from typing import TypeVar, Generic
+# Deprecated Decorator
+def Deprecated(message: str) -> Callable:
+    """
+    Decorator to mark a function as deprecated
+
+    :example:
+    @deprecated("This function is deprecated")
+    def old_function() -> None:
+        pass
+    """
+    def decorator(func) -> Callable:
+        def wrapper(*args, **kwargs) -> Callable:
+            print(f"WARNING: {func.__name__} is deprecated. {message}")
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+# Size, Point, Rect classes
+"""
+Size, Point, and Rect classes for 2D dimensions
+
+:methods:
+Add : Adds a value to the object
+Sub : Subtracts a value from the object
+Mul : Multiplies a value with the object
+TrueDiv : Divides the object by a value
+FloorDiv : Divides the object by a value and returns the floor value
+Mod : Returns the modulus of the object and a value
+Pow : Returns the object raised to the power of a value
+__add__ : Adds two objects together
+__sub__ : Subtracts two objects together
+__mul__ : Multiplies two objects together
+__truediv__ : Divides two objects together
+__floordiv__ : Divides two objects together and returns the floor value
+__mod__ : Returns the modulus of two objects
+__pow__ : Returns the object raised to the power of another object
+__eq__ : Checks if two objects are equal
+__ne__ : Checks if two objects are not equal
+__lt__ : Checks if one object is less than another
+__le__ : Checks if one object is less than or equal to another
+__gt__ : Checks if one object is greater than another
+__ge__ : Checks if one object is greater than or equal to another
+"""
 
 T = TypeVar('T', int, float)
 

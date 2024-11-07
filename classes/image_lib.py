@@ -42,7 +42,7 @@ class ImageAgent:
         """
         imwrite(path, image)
 
-    def ResizeImage(self, image: ndarray, size: Size[int], interpolation: ImageInterpolation) -> ndarray:
+    def ResizeImage(self, image: ndarray, size: Size[int], interpolation: ImageInterpolation = ImageInterpolation.linear_) -> ndarray:
         """
         Resize image.
 
@@ -96,5 +96,3 @@ class ImageAgent:
         >>> cropped_image : ndarray = image_agent.CropImage(image, Rect(0, 0, 100, 100))
         """
         return image[rect.point_.y_:rect.point_.y_+rect.size_.height_, rect.point_.x_:rect.point_.x_+rect.size_.width_]
-        
-
