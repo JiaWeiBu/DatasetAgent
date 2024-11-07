@@ -1,13 +1,19 @@
 # python version : 3.12.6 
 
-from classes.enum import ColorMode, ImageInterpolation, ColorConversion
-from cv2 import imread, imwrite, resize, cvtColor, VideoCapture, imshow, waitKey, destroyAllWindows
-from numpy import ndarray
-from classes.util_lib import Size, Rect
 from os.path import exists, dirname
 from os import makedirs
+from cv2 import imread, imwrite, resize, cvtColor, VideoCapture, imshow, waitKey, destroyAllWindows
+from numpy import ndarray
+
+from classes.enum import ColorMode, ImageInterpolation, ColorConversion
+from classes.util_lib import Size, Rect
 
 class ImageAgent:
+    """
+    Agent for image operations.
+    Used for loading, saving, resizing, converting color, and cropping images.
+    """
+
     def __init__(self):
         ...
     

@@ -12,14 +12,31 @@
 
 from os import listdir
 from os.path import isfile, join
-from classes.image_lib import ImageAgent
 from numpy import ndarray
+from classes.image_lib import ImageAgent
+
 
 class DatasetAgent:
+    """
+    Agent for dataset operations.
+    Used for extracting images from video files.
+    """
+
     def __init__(self):
         ...
     
     def VideoExtract(self, *, src_path : str = "./datasets", dst_path : str = "./bin") -> None:
+        """
+        Extract images from video files in the dataset folder.
+
+        Args:
+            src_path (str): Path to the dataset folder.
+            dst_path (str): Path to save the extracted images.
+        
+        :example:
+        >>> dataset_agent : DatasetAgent = DatasetAgent()
+        >>> dataset_agent.VideoExtract()
+        """
         image_agent : ImageAgent = ImageAgent()
 
         # Read from this folder
@@ -34,7 +51,7 @@ class DatasetAgent:
             for video in listdir(week_folder_path):
                 video_path = join(week_folder_path, video)
                 if not video_path.endswith((".mp4", ".mov")):
-                    "Warning: Invalid video file"
+                    print(f"Warning: Invalid video file on {video_path}")
                     continue
 
                 print(f"Reading {video_path}")
