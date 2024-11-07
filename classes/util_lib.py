@@ -309,10 +309,25 @@ class Size(Generic[T]):
         return self.width_ >= other.width_ and self.height_ >= other.height_
 
     def ClassValidator(self) -> None:
+        """
+        Validates the class type
+
+        :example:
+        square : Size = Size(10, 10)
+        square.ClassValidator()
+        """
         assert isinstance(self.width_, type(self.width_)), f"width_ must be of type {type(self.width_)}"
         assert isinstance(self.height_, type(self.height_)), f"height_ must be of type {type(self.height_)}"
 
     def OtherValidator(self, other: 'Size') -> None:
+        """
+        Validates the other type
+
+        :example:
+        square1 : Size = Size(10, 10)
+        square2 : Size = Size(20, 20)
+        square1.OtherValidator(square2)
+        """
         assert isinstance(other, Size), "other must be of type Size"
         assert isinstance(other.width_, type(self.width_)), f"width_ must be of type {type(self.width_)}"
         assert isinstance(other.height_, type(self.height_)), f"height_ must be of type {type(self.height_)}"
@@ -580,10 +595,25 @@ class Point(Generic[T]):
         return self.x_ >= other.x_ and self.y_ >= other.y_
 
     def ClassValidator(self) -> None:
+        """
+        Validates the class type
+
+        :example:
+        point : Point = Point(10, 10)
+        point.ClassValidator()
+        """
         assert isinstance(self.x_, type(self.x_)), f"x_ must be of type {type(self.x_)}"
         assert isinstance(self.y_, type(self.y_)), f"y_ must be of type {type(self.y_)}"
 
     def OtherValidator(self, other: 'Point') -> None:
+        """
+        Validates the other type
+        
+        :example:
+        point1 : Point = Point(10, 10)
+        point2 : Point = Point(20, 20)
+        point1.OtherValidator(point2)
+        """
         assert isinstance(other, Point), "other must be of type Point"
         assert isinstance(other.x_, type(self.x_)), f"x_ must be of type {type(self.x_)}"
         assert isinstance(other.y_, type(self.y_)), f"y_ must be of type {type(self.y_)}"
@@ -878,10 +908,25 @@ class Rect(Generic[T]):
         return self.size_ >= other.size_ and self.point_ >= other.point_
 
     def ClassValidator(self) -> None:
+        """
+        Validates the class attributes
+
+        :example:
+        rect : Rect = Rect(10, 10, 5, 5)
+        rect.ClassValidator()
+        """
         self.size_.ClassValidator()
         self.point_.ClassValidator()
 
     def OtherValidator(self, other: 'Rect') -> None:
+        """
+        Validates the other class attributes
+
+        :example:
+        rect1 : Rect = Rect(10, 10, 5, 5)
+        rect2 : Rect = Rect(20, 20, 10, 10)
+        rect1.OtherValidator(rect2)
+        """
         assert isinstance(other, Rect), "other must be of type Rect"
         self.size_.OtherValidator(other.size_)
         self.point_.OtherValidator(other.point_)
