@@ -52,99 +52,99 @@ class Size(Generic[T]):
     Size class for 2D dimensions
     """
 
-    def __init__(self, width : T, height : T) -> None:
+    def __init__(self, width: T, height: T) -> None:
         """
         Constructor for Size class
         
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         """
-        self.width_ : T = width
-        self.height_ : T = height
+        self.width_: T = width
+        self.height_: T = height
     
     def __str__(self) -> str:
         """
         Returns a string representation of the Size object
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square) # Size(width=10, height=10)
         """
         self.ClassValidator()
         return f"Size(width={self.width_}, height={self.height_})"
 
-    def Add(self, value : T) -> 'Size':
+    def Add(self, value: T) -> 'Size':
         """
         Adds a value to the Size object
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.Add(5)) # Size(width=15, height=15)
         """
         self.ClassValidator()
         return Size(self.width_ + value, self.height_ + value)
 
-    def Sub(self, value : T) -> 'Size':
+    def Sub(self, value: T) -> 'Size':
         """
         Subtracts a value from the Size object
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.Sub(5)) # Size(width=5, height=5)
         """
         self.ClassValidator()
         return Size(self.width_ - value, self.height_ - value)
 
-    def Mul(self, value : T) -> 'Size':
+    def Mul(self, value: T) -> 'Size':
         """
         Multiplies a value with the Size object
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.Mul(5)) # Size(width=50, height=50)
         """
         self.ClassValidator()
         return Size(self.width_ * value, self.height_ * value)
     
-    def TrueDiv(self, value : T) -> 'Size':
+    def TrueDiv(self, value: T) -> 'Size':
         """
         Divides the Size object by a value
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.TrueDiv(5)) # Size(width=2.0, height=2.0)
         """
         self.ClassValidator()
         return Size(self.width_ / value, self.height_ / value)
 
-    def FloorDiv(self, value : T) -> 'Size':
+    def FloorDiv(self, value: T) -> 'Size':
         """
         Divides the Size object by a value and returns the floor value
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.FloorDiv(5)) # Size(width=2, height=2)
         """
         self.ClassValidator()
         return Size(self.width_ // value, self.height_ // value)
 
-    def Mod(self, value : T) -> 'Size':
+    def Mod(self, value: T) -> 'Size':
         """
         Returns the modulus of the Size object and a value
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.Mod(5))
         """
         self.ClassValidator()
         return Size(self.width_ % value, self.height_ % value)
     
-    def Pow(self, value : T) -> 'Size':
+    def Pow(self, value: T) -> 'Size':
         """
         Returns the Size object raised to the power of a value
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         print(square.Pow(2)) # Size(width=100, height=100)
         """
         self.ClassValidator()
@@ -155,8 +155,8 @@ class Size(Generic[T]):
         Adds two Size objects together
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 + square2) # Size(width=30, height=30)
         """
         self.OtherValidator(other)
@@ -167,8 +167,8 @@ class Size(Generic[T]):
         Subtracts two Size objects together
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 - square2) # Size(width=-10, height=-10)
         """
         self.OtherValidator(other)
@@ -179,8 +179,8 @@ class Size(Generic[T]):
         Multiplies two Size objects together
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 * square2) # Size(width=200, height=200)
         """
         self.OtherValidator(other)
@@ -191,20 +191,20 @@ class Size(Generic[T]):
         Divides two Size objects together
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 / square2) # Size(width=0.5, height=0.5)
         """
         self.OtherValidator(other)
         return Size(self.width_ / other.width_, self.height_ / other.height_)
-    
+
     def __floordiv__(self, other: 'Size') -> 'Size':
         """
         Divides two Size objects together and returns the floor value
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 // square2)
         """
         self.OtherValidator(other)
@@ -215,20 +215,20 @@ class Size(Generic[T]):
         Returns the modulus of two Size objects
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 % square2)
         """
         self.OtherValidator(other)
         return Size(self.width_ % other.width_, self.height_ % other.height_)
-    
+
     def __pow__(self, other: 'Size') -> 'Size':
         """
         Returns the Size object raised to the power of another Size object
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(2, 2)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](2, 2)
         print(square1 ** square2) # Size(width=100, height=100)
         """
         self.OtherValidator(other)
@@ -239,21 +239,21 @@ class Size(Generic[T]):
         Checks if two Size objects are equal
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(10, 10)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](10, 10)
         print(square1 == square2) # True
         """
         assert isinstance(other, Size), "other must be of type Size"
         self.OtherValidator(other)
         return self.width_ == other.width_ and self.height_ == other.height_
-    
+
     def __ne__(self, other: object) -> bool:
         """
         Checks if two Size objects are not equal
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 != square2) # True
         """
         assert isinstance(other, Size), "other must be of type Size"
@@ -265,8 +265,8 @@ class Size(Generic[T]):
         Checks if one Size object is less than another
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 < square2) # True
         """
         self.OtherValidator(other)
@@ -277,8 +277,8 @@ class Size(Generic[T]):
         Checks if one Size object is less than or equal to another
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 <= square2) # True
         """
         self.OtherValidator(other)
@@ -289,8 +289,8 @@ class Size(Generic[T]):
         Checks if one Size object is greater than another
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 > square2) # False
         """
         self.OtherValidator(other)
@@ -301,8 +301,8 @@ class Size(Generic[T]):
         Checks if one Size object is greater than or equal to another
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         print(square1 >= square2) # False
         """
         assert isinstance(other, Size), "other must be of type Size"
@@ -313,7 +313,7 @@ class Size(Generic[T]):
         Validates the class type
 
         :example:
-        square : Size = Size(10, 10)
+        square: Size[int] = Size[int](10, 10)
         square.ClassValidator()
         """
         assert isinstance(self.width_, type(self.width_)), f"width_ must be of type {type(self.width_)}"
@@ -324,14 +324,13 @@ class Size(Generic[T]):
         Validates the other type
 
         :example:
-        square1 : Size = Size(10, 10)
-        square2 : Size = Size(20, 20)
+        square1: Size[int] = Size[int](10, 10)
+        square2: Size[int] = Size[int](20, 20)
         square1.OtherValidator(square2)
         """
         assert isinstance(other, Size), "other must be of type Size"
         assert isinstance(other.width_, type(self.width_)), f"width_ must be of type {type(self.width_)}"
         assert isinstance(other.height_, type(self.height_)), f"height_ must be of type {type(self.height_)}"
-
 
 class Point(Generic[T]):
     """
