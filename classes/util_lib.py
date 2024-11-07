@@ -1,4 +1,6 @@
-from typing import TypeVar, Generic
+# python version : 3.12.6 
+
+from typing import TypeVar, Generic, Callable
 # Deprecated Decorator
 def Deprecated(message: str) -> Callable:
     """
