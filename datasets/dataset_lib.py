@@ -39,7 +39,7 @@ class DatasetAgent:
 
                 print(f"Reading {video_path}")
 
-                frames : list[ndarray] = image_agent.LoadVideo(video_path)
+                frames : list[ndarray] = image_agent.LoadVideo(video_path, 60)
 
                 for i, frame in enumerate(frames):
                     image_agent.SaveImage(f"{dst_path}/{week_folder}/{video.replace(".mp4","").replace(".mov","")}/{i : 07d}.png", frame)

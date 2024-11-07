@@ -115,12 +115,13 @@ class ImageAgent:
 
         return image[rect.point_.y_:rect.point_.y_+rect.size_.height_, rect.point_.x_:rect.point_.x_+rect.size_.width_]
 
-    def LoadVideo(self, path: str) -> list[ndarray]:
+    def LoadVideo(self, path: str, frame_rate : int) -> list[ndarray]:
         """
         Load video from file.
 
         Args:
             path (str): Path to the video file.
+            frame_rate (int): Frame rate of the video.
 
         Returns:
             list[ndarray]: List of frames.
@@ -136,13 +137,16 @@ class ImageAgent:
         video = VideoCapture(path)
         
         # Extract frames from video
-        # frames = []
-        # while video.isOpened():
-        #     ret, frame = video.read()
-        #     if not ret:
-        #         break
-        #     frames.append(frame)
-        frames : list[ndarray] = [frame for ret, frame in iter(lambda: video.read(), (False, None)) if ret]
+        frames = []
+        count : int = 0
+        while video.isOpened():
+            ret, frame = video.read()
+            if not ret:
+                break
+            if count % frame_rate == 0:
+                frames.append(frame)
+            count += 1
+
 
         video.release()
         return frames
