@@ -92,7 +92,7 @@ class VideoDatasetAgent:
         >>> dataset_agent.SaveImages(frames, dst_path)
         """
         for i, frame in enumerate(frames):
-            self.image_agent_.SaveImage(f"{dst_path}/{i : 07d}.{self.img_extensions_}", frame)
+            self.image_agent_.SaveImage(f"{dst_path}/{i:07d}.{self.img_extensions_}", frame)
 
     def StripExtension(self, path : str, extensions : tuple[str, ...] | str) -> str:
         """

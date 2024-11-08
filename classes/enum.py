@@ -1,7 +1,7 @@
 # python version : 3.12.6 
 from enum import Enum, unique
 from cv2 import IMREAD_COLOR, IMREAD_GRAYSCALE, INTER_NEAREST, INTER_LINEAR, INTER_CUBIC, INTER_LANCZOS4
-from cv2 import COLOR_RGB2GRAY, COLOR_GRAY2RGB
+from cv2 import COLOR_RGB2GRAY, COLOR_GRAY2RGB, COLOR_RGB2HSV
 
 # Enum for color mode
 @unique
@@ -26,6 +26,7 @@ class ColorConversion(Enum):
     """
     rgb2gray_ = COLOR_RGB2GRAY
     gray2rgb_ = COLOR_GRAY2RGB
+    rgb2hsv_ = COLOR_RGB2HSV
 
 @unique
 class ImageInterpolation(Enum):

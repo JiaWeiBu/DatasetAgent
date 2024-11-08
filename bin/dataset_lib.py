@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 from numpy import ndarray
 from classes.image_lib import ImageAgent 
-from classes.enum import ImageAngle
+from classes.enum import ImageAngle, ColorMode
 
 
 class ImageDatasetAgent:
@@ -92,7 +92,7 @@ class ImageDatasetAgent:
 
                     print(f"Reading {image_path}")
 
-                    image : ndarray = self.image_agent_.LoadImage(image_path, "rgb")
+                    image : ndarray = self.image_agent_.LoadImage(image_path, ColorMode.rgb_)
 
                     # Crop the plant from the image
                     ...

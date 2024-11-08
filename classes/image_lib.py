@@ -1,9 +1,9 @@
 # python version : 3.12.6 
 
 from os.path import exists, dirname
-from os import makedirs
-from cv2 import imread, imwrite, resize, cvtColor, VideoCapture, imshow, waitKey, destroyAllWindows
-from numpy import ndarray
+from os import makedirs, listdir
+from cv2 import imread, imwrite, resize, cvtColor, VideoCapture, imshow, waitKey, destroyAllWindows, inRange, findContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, boundingRect, contourArea
+from numpy import ndarray, array
 
 from classes.enum import ColorMode, ImageInterpolation, ColorConversion
 from classes.util_lib import Size, Rect
@@ -32,7 +32,10 @@ class ImageAgent:
         >>> image_agent : ImageAgent = ImageAgent()
         >>> image : ndarray = image_agent.LoadImage("path/to/image.jpg", ColorMode.rgb
         """
-        assert exists(path), "File not found"
+        assert exists(dirname(path)), f"{dirname(path)} not found"
+
+        # list dir in path
+        print(listdir(dirname(path)))
 
         image : ndarray = imread(path, color_mode.value)
         return image
@@ -156,3 +159,57 @@ class ImageAgent:
 
         video.release()
         return frames
+
+    def FindPlantMask(self, image: ndarray, lower_color: list[int] = [35, 40, 40], upper_color: list[int] = [85, 255, 255]) -> ndarray:
+        """
+        Find plant mask in the image using color range.
+
+        Args:
+            image (ndarray): Image data.
+            lower_color (list[int]): Lower color range.
+            upper_color (list[int]): Upper color range.
+
+        Returns:
+            ndarray: Plant mask.
+
+        :example:
+        >>> image_agent : ImageAgent = ImageAgent()
+        >>> image : ndarray = image_agent.LoadImage("path/to/image.jpg", ColorMode.rgb)
+        >>> mask : ndarray = image_agent.FindPlantMask(image)
+        """
+        # Convert image to HSV color space
+        hsv = cvtColor(image, ColorConversion.rgb2hsv_.value)
+
+        np_lower_color = array(lower_color)
+        np_upper_color = array(upper_color)
+
+        # Create a mask for the green color (plant)
+        mask = inRange(hsv, np_lower_color, np_upper_color)
+
+        return mask
+
+    def FindPlantContour(self, mask: ndarray) -> Rect[int] | None:
+        """
+        Find plant contour in the mask.
+
+        Args:
+            mask (ndarray): Plant mask.
+        
+        Returns:
+            Rect: Bounding box of the plant contour.
+
+        :example:
+        >>> image_agent : ImageAgent = ImageAgent()
+        >>> image : ndarray = image_agent.LoadImage("path/to/image.jpg", ColorMode.rgb)
+        >>> mask : ndarray = image_agent.FindPlantMask(image)
+        >>> plant_contour : Rect = image_agent.FindPlantContour(mask)
+        """
+        contours, _ = findContours(mask, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE)
+
+        if contours:
+            largest_contour = max(contours, key=contourArea)
+            x, y, w, h = boundingRect(largest_contour)
+
+            return Rect[int](x, y, w, h)
+        else:
+            return None
