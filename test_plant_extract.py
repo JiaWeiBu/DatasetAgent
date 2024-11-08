@@ -51,17 +51,31 @@ from classes.enum import ColorMode
 #     print("No plant detected.")
 
 def main():
-    image_path : str = "C:/Users/aaron/Desktop/repo/DatasetAgent/bin/20240527_week7/top_20240527_week7/000017.png"
+    image_path : str = "bin/20240527_week7/top_20240527_week7/0000039.png"
     image_agent : ImageAgent = ImageAgent()
     image : ndarray = image_agent.LoadImage(image_path, ColorMode.rgb_)
 
     print(image.shape)
 
     mask : ndarray = image_agent.FindPlantMask(image)
-    plant_contour : Rect[int] | None = image_agent.FindPlantContour(mask)
+    
+    plant_contours : list[Rect[int]] | None = image_agent.FindPlantContour(mask)
 
-    if plant_contour:
-        cropped_image : ndarray = image_agent.CropImage(image, plant_contour)
+    if plant_contours is None:
+        print("No plant detected.")
+    
+    print(len(plant_contours))
+
+    for plant_contour in plant_contours:
+        center_x, center_y = plant_contour.point_.x_ + plant_contour.size_.width_ // 2, plant_contour.point_.y_ + plant_contour.size_.height_ // 2
+        crop_size = max(plant_contour.size_.width_, plant_contour.size_.height_)
+
+        x_start = max(center_x - crop_size // 2, 0)
+        y_start = max(center_y - crop_size // 2, 0)
+        x_end = min(center_x + crop_size // 2, image.shape[1])
+        y_end = min(center_y + crop_size // 2, image.shape[0])
+
+        cropped_image = image[y_start:y_end, x_start:x_end]
 
         imshow('Cropped Image', cropped_image)
         waitKey(0)

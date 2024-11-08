@@ -188,7 +188,7 @@ class ImageAgent:
 
         return mask
 
-    def FindPlantContour(self, mask: ndarray) -> Rect[int] | None:
+    def FindPlantContour(self, mask: ndarray) -> list[Rect[int]] | None:
         """
         Find plant contour in the mask.
 
@@ -207,9 +207,16 @@ class ImageAgent:
         contours, _ = findContours(mask, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE)
 
         if contours:
-            largest_contour = max(contours, key=contourArea)
-            x, y, w, h = boundingRect(largest_contour)
+            # largest_contour = max(contours, key=contourArea)
+            # x, y, w, h = boundingRect(largest_contour)
+            # return [Rect(x, y, w, h)]
 
-            return Rect[int](x, y, w, h)
+            # Get 5 largest contours
+            largest_contours = sorted(contours, key=contourArea, reverse=True)[:5]
+            plant_contours : list[Rect[int]] = []
+            for contour in largest_contours:
+                x, y, w, h = boundingRect(contour)
+                plant_contours.append(Rect(x, y, w, h))
+            return plant_contours
         else:
             return None
