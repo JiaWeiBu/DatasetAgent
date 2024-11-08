@@ -1,7 +1,7 @@
-from datasets.dataset_lib import DatasetAgent
+from datasets.dataset_lib import VideoDatasetAgent
 
 def main():
-    dataset_agent : DatasetAgent = DatasetAgent()
+    dataset_agent : VideoDatasetAgent = VideoDatasetAgent()
     dataset_agent.VideoExtract()
 
 if __name__ == "__main__":
