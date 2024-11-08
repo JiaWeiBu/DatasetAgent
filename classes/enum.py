@@ -41,3 +41,18 @@ class ImageInterpolation(Enum):
     linear_ = INTER_LINEAR
     cubic_ = INTER_CUBIC
     lanczos4_ = INTER_LANCZOS4
+
+@unique
+class ImageAngle(Enum):
+    """
+    Enum for different angles of the plant images.
+
+    60DEGREES : Side view of the plant at 60 degrees
+    SIDE : Side view of the plant
+    TOP : Top view of the plant
+    UNKNOWN : Unknown angle of the plant
+    """
+    degrees60_ = "60degrees"
+    side_ = "side"
+    top_ = "top"
+    unknown_ = "unknown"
