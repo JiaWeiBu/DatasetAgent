@@ -3,7 +3,6 @@ from numpy import ndarray
 
 from classes.image_lib import ImageAgent
 from classes.util_lib import Rect
-from classes.enum import ColorMode
 
 # # Load the image
 # image_path = '/path/to/your/image.png'
@@ -53,7 +52,7 @@ from classes.enum import ColorMode
 def main():
     image_path : str = "bin/20240527_week7/top_20240527_week7/0000039.png"
     image_agent : ImageAgent = ImageAgent()
-    image : ndarray = image_agent.LoadImage(image_path, ColorMode.rgb_)
+    image : ndarray = image_agent.LoadImage(image_path, image_agent.ColorModeEnum.rgb_)
 
     print(image.shape)
 

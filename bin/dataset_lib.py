@@ -1,15 +1,18 @@
 # python version : 3.12.6
+from enum import Enum, unique
 from os import listdir
 from os.path import isfile, join
 from numpy import ndarray
 from classes.image_lib import ImageAgent 
-from classes.enum import ImageAngle, ColorMode
 
 
 class ImageDatasetAgent:
     """
     Agent for dataset operations.
     Used for cropping plant from the images for dataset creation.
+
+    Enum:
+        ImageAngleEnum: Enum for different angles of the plant images.
 
     Attributes:
         image_agent_ (ImageAgent): Image agent for image operations.
@@ -18,11 +21,26 @@ class ImageDatasetAgent:
     
     Methods:
         PlantExtract: Extract plant images from the dataset folder.
-        ImageAngle: Get the image angle from the image path.
+        GetImageAngle: Get the image angle from the image path.
     
     :example:
     >>> dataset_agent : ImageDatasetAgent = ImageDatasetAgent()
     """
+
+    @unique
+    class ImageAngleEnum(Enum):
+        """
+        Enum for different angles of the plant images.
+
+        60DEGREES : Side view of the plant at 60 degrees
+        SIDE : Side view of the plant
+        TOP : Top view of the plant
+        UNKNOWN : Unknown angle of the plant
+        """
+        degrees60_ = "60degrees"
+        side_ = "side"
+        top_ = "top"
+        unknown_ = "unknown"
 
     def __init__(self, img_extensions : tuple[str, ...] | str = (".png")) -> None:
         """
@@ -36,14 +54,15 @@ class ImageDatasetAgent:
         """
         self.image_agent_ : ImageAgent = ImageAgent()
         self.img_extensions_ : tuple[str, ...] | str = img_extensions
-        self.angle_dict_ : dict[str, ImageAngle] = {
-            "60degrees" : ImageAngle.degrees60_,
-            "side" : ImageAngle.side_,
-            "top" : ImageAngle.top_
+        self.angle_dict_ : dict[str, ImageDatasetAgent.ImageAngleEnum] = {
+            "60degrees" : ImageDatasetAgent.ImageAngleEnum.degrees60_,
+            "side" : ImageDatasetAgent.ImageAngleEnum.side_,
+            "top" : ImageDatasetAgent.ImageAngleEnum.top_
         }
 
-    def PlantExtract(self, *, src_path : str = "./bin", dst_path : str = "./bin/bin", filter_angle : list[ImageAngle] = [ImageAngle.top_]) -> None:
+    def PlantExtract(self, *, src_path : str = "./bin", dst_path : str = "./bin/bin", filter_angle : list[ImageAngleEnum] = [ImageAngleEnum.top_]) -> None:
         """
+        (NOT COMPLETED)
         Extract plant images from the dataset folder using image processing.
         Crop the plant roi from the source image and save it to the destination folder.
 
@@ -87,7 +106,7 @@ class ImageDatasetAgent:
                 if isfile(angle_folder_path):
                     continue
                 
-                image_angle : ImageAngle = self.ImageAngle(angle_folder)
+                image_angle : ImageDatasetAgent.ImageAngleEnum = ImageDatasetAgent.ImageAngleEnum(angle_folder)
 
                 if image_angle not in filter_angle:
                     print(f"Skipping {angle_folder_path} as {image_angle.value}")
@@ -104,14 +123,12 @@ class ImageDatasetAgent:
 
                     print(f"Reading {image_path}")
 
-                    image : ndarray = self.image_agent_.LoadImage(image_path, ColorMode.rgb_)
+                    image : ndarray = self.image_agent_.LoadImage(image_path, ImageAgent.ColorModeEnum.rgb_)
 
                     # Crop the plant from the image
-                    ...
-
                     
 
-    def ImageAngle(self, path : str) -> ImageAngle:
+    def GetImageAngle(self, path : str) -> ImageDatasetAgent.ImageAngleEnum:
         """
         Get the image angle from the image path.
 
@@ -133,9 +150,9 @@ class ImageDatasetAgent:
         path_lower = path.lower()
         for angle, angle_enum in self.angle_dict_.items():
             # dont look for unknown
-            if angle_enum == ImageAngle.unknown_:
+            if angle_enum == ImageDatasetAgent.ImageAngleEnum.unknown_:
                 continue
 
             if angle in path_lower:
                 return angle_enum
-        return ImageAngle.unknown_
+        return ImageDatasetAgent.ImageAngleEnum.unknown_
