@@ -34,6 +34,9 @@ class ImageAgent:
     class ColorModeEnum(Enum):
         """
         Enum for different color modes.
+
+        rgb_ : RGB color mode.
+        grayscale_ : Grayscale color mode.
         """
         rgb_ = IMREAD_COLOR
         grayscale_ = IMREAD_GRAYSCALE
@@ -42,6 +45,10 @@ class ImageAgent:
     class ColorConversionEnum(Enum):
         """
         Enum for different color conversions.
+
+        rgb2gray_ : RGB to Grayscale conversion.
+        gray2rgb_ : Grayscale to RGB conversion.
+        rgb2hsv_ : RGB to HSV conversion.
         """
         rgb2gray_ = COLOR_RGB2GRAY
         gray2rgb_ = COLOR_GRAY2RGB
@@ -51,6 +58,10 @@ class ImageAgent:
     class ImageInterpolationEnum(Enum):
         """
         Enum for different interpolation methods for image resizing.
+
+        nearest_ : Nearest neighbor interpolation.
+        linear_ : Linear interpolation.
+        cubic_ : Cubic interpolation.
         """
         nearest_ = INTER_NEAREST
         linear_ = INTER_LINEAR

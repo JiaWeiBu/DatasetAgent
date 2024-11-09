@@ -32,10 +32,10 @@ class ImageDatasetAgent:
         """
         Enum for different angles of the plant images.
 
-        60DEGREES : Side view of the plant at 60 degrees
-        SIDE : Side view of the plant
-        TOP : Top view of the plant
-        UNKNOWN : Unknown angle of the plant
+        degrees60_ : 60 degrees angle.
+        side_ : Side angle.
+        top_ : Top angle.
+        unknown_ : Unknown angle.
         """
         degrees60_ = "60degrees"
         side_ = "side"
