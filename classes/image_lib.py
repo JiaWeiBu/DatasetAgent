@@ -12,6 +12,23 @@ class ImageAgent:
     """
     Agent for image operations.
     Used for loading, saving, resizing, converting color, and cropping images.
+
+    Attributes:
+        None
+
+    Methods:
+        LoadImage: Load image from file.
+        SaveImage: Save image to file.
+        ResizeImage: Resize image.
+        ConvertColor: Convert color of image.
+        CropImage: Crop image.
+        LoadVideo: Load video from file.
+        FindPlantMask: Find plant mask in the image using color range.
+        FindPlantContour: Find plant contour in the mask.
+
+    :example:
+    >>> image_agent : ImageAgent = ImageAgent()
+    >>> image : ndarray = image_agent.LoadImage("path/to/image.jpg", ColorMode.rgb)
     """
 
     def __init__(self):

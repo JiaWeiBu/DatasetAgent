@@ -10,6 +10,20 @@ class VideoDatasetAgent:
     """
     Agent for dataset operations.
     Used for extracting images from video files.
+
+    Attributes:
+        image_agent_ (ImageAgent): Image agent for image operations.
+        vid_extensions_ (tuple[str, ...] | str): Video file extensions to read.
+        img_extensions_ (str): Image file extension to save.
+        frame_rate_ (int): Frame rate for video extraction.
+    
+    Methods:
+        VideoExtract: Extract images from video files in the dataset folder.
+        SaveImages: Save the extracted images.
+        StripExtension: Strip the extension from the path.
+
+    :example:
+    >>> dataset_agent : VideoDatasetAgent = VideoDatasetAgent()
     """
 
     def __init__(self, vid_extensions : tuple[str, ...] | str = (".mp4", ".mov"), img_extensions : str = "png", frame_rate : int = 60) -> None:

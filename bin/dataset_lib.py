@@ -10,6 +10,18 @@ class ImageDatasetAgent:
     """
     Agent for dataset operations.
     Used for cropping plant from the images for dataset creation.
+
+    Attributes:
+        image_agent_ (ImageAgent): Image agent for image operations.
+        img_extensions_ (tuple[str, ...] | str): Image file extensions to read.
+        angle_dict_ (dict[str, ImageAngle]): Dictionary for image angles.
+    
+    Methods:
+        PlantExtract: Extract plant images from the dataset folder.
+        ImageAngle: Get the image angle from the image path.
+    
+    :example:
+    >>> dataset_agent : ImageDatasetAgent = ImageDatasetAgent()
     """
 
     def __init__(self, img_extensions : tuple[str, ...] | str = (".png")) -> None:
