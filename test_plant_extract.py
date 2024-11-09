@@ -63,8 +63,6 @@ def main():
 
     if plant_contours is None:
         print("No plant detected.")
-    
-    print(len(plant_contours))
 
     for plant_contour in plant_contours:
         center_x, center_y = plant_contour.point_.x_ + plant_contour.size_.width_ // 2, plant_contour.point_.y_ + plant_contour.size_.height_ // 2
