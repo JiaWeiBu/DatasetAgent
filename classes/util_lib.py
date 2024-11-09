@@ -18,6 +18,16 @@ def Deprecated(message: str) -> Callable:
         return wrapper
     return decorator
 
+# Unused Function
+def Unused(*args) -> None:
+    """
+    Pass any unused variable to make code editor think the variable is used
+
+    :example:
+    >>> Unused(1)
+    """
+    pass
+
 # Size, Point, Rect classes
 """
 Size, Point, and Rect classes for 2D dimensions
