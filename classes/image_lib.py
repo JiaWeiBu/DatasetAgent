@@ -34,9 +34,6 @@ class ImageAgent:
         """
         assert exists(dirname(path)), f"{dirname(path)} not found"
 
-        # list dir in path
-        print(listdir(dirname(path)))
-
         image : ndarray = imread(path, color_mode.value)
         return image
 
