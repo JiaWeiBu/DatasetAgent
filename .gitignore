@@ -4,3 +4,6 @@
 *.mov
 *.png
 /data-test
+/bg_bin
+/data-test2
+/processed

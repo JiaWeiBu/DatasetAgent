@@ -5,7 +5,7 @@ from numpy import ndarray, zeros, uint8, array, float32, int32
 
 # i want to load yolo segmentation dataset remove the background and also create a mask for black and white image
 
-input_root : str = "data-test"
+input_root : str = "data-test2"
 image_folder_name : str = "images"
 label_folder_name : str = "labels"
 input_source : list[str] = ["test", "train", "valid"]

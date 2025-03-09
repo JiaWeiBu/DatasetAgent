@@ -70,37 +70,40 @@ for week_folder in sorted(os.listdir(image_dir)):
         os.makedirs(os.path.join(output_dir, effect, week_folder), exist_ok=True)
 
     # Process all images in this week's folder
-    for filename in os.listdir(week_image_path):
-        if filename.endswith((".jpg", ".png", ".jpeg")):
-            image_path = os.path.join(week_image_path, filename)
-            mask_path = os.path.join(week_mask_path, filename)  # Assume mask has the same filename
+    image_filenames = {os.path.splitext(f)[0]: f for f in os.listdir(week_image_path) if f.endswith((".jpg", ".png", ".jpeg"))}
+    mask_filenames = {os.path.splitext(f)[0]: f for f in os.listdir(week_mask_path) if f.endswith((".jpg", ".png", ".jpeg"))}
 
-            if not os.path.exists(mask_path):
-                print(f"Warning: Mask for {filename} in {week_folder} not found, skipping...")
-                continue
+    for name, image_file in image_filenames.items():
+        if name not in mask_filenames:
+            print(f"Warning: Mask for {image_file} in {week_folder} not found, skipping...")
+            continue
 
-            # Load image and mask
-            image = cv2.imread(image_path)
-            mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+        image_path = os.path.join(week_image_path, image_file)
+        mask_path = os.path.join(week_mask_path, mask_filenames[name])
+        image_ext = os.path.splitext(image_file)[1]  # Get original image extension
 
-            if image is None or mask is None:
-                print(f"Error loading {filename} in {week_folder}, skipping...")
-                continue
+        # Load image and mask
+        image = cv2.imread(image_path)
+        mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
 
-            # Ensure binary mask
-            _, mask = cv2.threshold(mask, 128, 255, cv2.THRESH_BINARY)
+        if image is None or mask is None:
+            print(f"Error loading {image_file} in {week_folder}, skipping...")
+            continue
 
-            # Apply Effects
-            image_gray, image_hue_up, image_hue_down, image_contrast_up, image_contrast_down, image_brown = apply_effects(image, mask)
+        # Ensure binary mask
+        _, mask = cv2.threshold(mask, 128, 255, cv2.THRESH_BINARY)
 
-            # Save outputs
-            cv2.imwrite(os.path.join(output_dir, "grayscale", week_folder, filename), image_gray)
-            cv2.imwrite(os.path.join(output_dir, "hue_up", week_folder, filename), image_hue_up)
-            cv2.imwrite(os.path.join(output_dir, "hue_down", week_folder, filename), image_hue_down)
-            cv2.imwrite(os.path.join(output_dir, "contrast_up", week_folder, filename), image_contrast_up)
-            cv2.imwrite(os.path.join(output_dir, "contrast_down", week_folder, filename), image_contrast_down)
-            cv2.imwrite(os.path.join(output_dir, "dying", week_folder, filename), image_brown)
+        # Apply Effects
+        image_gray, image_hue_up, image_hue_down, image_contrast_up, image_contrast_down, image_brown = apply_effects(image, mask)
 
-            print(f"Processed: {week_folder}/{filename}")
+        # Save outputs with the original image extension
+        cv2.imwrite(os.path.join(output_dir, "grayscale", week_folder, name + image_ext), image_gray)
+        cv2.imwrite(os.path.join(output_dir, "hue_up", week_folder, name + image_ext), image_hue_up)
+        cv2.imwrite(os.path.join(output_dir, "hue_down", week_folder, name + image_ext), image_hue_down)
+        cv2.imwrite(os.path.join(output_dir, "contrast_up", week_folder, name + image_ext), image_contrast_up)
+        cv2.imwrite(os.path.join(output_dir, "contrast_down", week_folder, name + image_ext), image_contrast_down)
+        cv2.imwrite(os.path.join(output_dir, "dying", week_folder, name + image_ext), image_brown)
+
+        print(f"Processed: {week_folder}/{image_file}")
 
 print("Processing complete! Outputs saved in './data-test/output/'")
